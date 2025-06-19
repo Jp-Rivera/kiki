@@ -1,4 +1,4 @@
-import WaveSurfer from 'wavesurfer'
+import WaveSurfer from 'wavesurfer.js'
 
 const wavesurfer = WaveSurfer.create({
     container: '#waveform',
