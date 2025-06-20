@@ -34,6 +34,19 @@ document.querySelector('#slider').oninput = function () {
     ws.zoom(Number(this.value));
 };
 
+const startButton = document.querySelector('#start')
+const endButton = document.querySelector('#end')
+const startValue = document.querySelector('#start-value')
+const endValue = document.querySelector('#end-value')
+
+startButton.addEventListener('click', () => {
+    startValue.value = ws.getCurrentTime()
+})
+
+endButton.addEventListener('click', () => {
+    endValue.value = ws.getCurrentTime()
+})
+
 const random = (min, max) => Math.random() * (max - min) + min
 const randomColor = () => `rgba(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)}, 0.5)`
 
