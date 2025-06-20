@@ -11,6 +11,17 @@ const ws = WaveSurfer.create({
   plugins: [regions],
 })
 
+const playButton = document.getElementById('play')
+const pauseButton = document.getElementById('pause')
+
+playButton.addEventListener('click', () => {
+    ws.play()
+})
+
+pauseButton.addEventListener('click', () => {
+    ws.pause()
+})
+
 const random = (min, max) => Math.random() * (max - min) + min
 const randomColor = () => `rgba(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)}, 0.5)`
 
