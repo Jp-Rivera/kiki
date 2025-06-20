@@ -10,17 +10,7 @@ const ws = WaveSurfer.create({
   progressColor: 'rgb(100, 0, 100)',
   url: '../public/walk_insta.wav',
   plugins: [regions],
-  minPxPerSec: 100,
 })
-
-ws.registerPlugin(
-    ZoomPlugin.create({
-      // the amount of zoom per wheel step, e.g. 0.5 means a 50% magnification per scroll
-      scale: 0.5,
-      // Optionally, specify the maximum pixels-per-second factor while zooming
-      maxZoom: 100,
-    }),
-)
 
 const playButton = document.getElementById('play')
 const pauseButton = document.getElementById('pause')
@@ -32,6 +22,17 @@ playButton.addEventListener('click', () => {
 pauseButton.addEventListener('click', () => {
     ws.pause()
 })
+
+ws.registerPlugin(
+    ZoomPlugin.create({
+      scale: 0.5,
+      maxZoom: 100,
+    }),
+)
+
+document.querySelector('#slider').oninput = function () {
+    ws.zoom(Number(this.value));
+};
 
 const random = (min, max) => Math.random() * (max - min) + min
 const randomColor = () => `rgba(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)}, 0.5)`
@@ -46,4 +47,14 @@ ws.on('decode', () => {
     drag: false,
     resize: true,
   })
+  regions.addRegion({
+    start: 9,
+    end: 10,
+    content: 'Cramped region',
+    color: randomColor(),
+    minLength: 1,
+    maxLength: 10,
+  })
 })
+
+console.log(regions.getRegions())
