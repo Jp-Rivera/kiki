@@ -30,9 +30,11 @@ ws.registerPlugin(
     }),
 )
 
-document.querySelector('#slider').oninput = function () {
-    ws.zoom(Number(this.value));
-};
+const slider = document.querySelector('#slider');
+
+slider.addEventListener('input', (event) => {
+  ws.zoom(Number(event.target.value));
+});
 
 const startButton = document.querySelector('#start')
 const endButton = document.querySelector('#end')
@@ -47,27 +49,22 @@ endButton.addEventListener('click', () => {
     endValue.value = ws.getCurrentTime()
 })
 
-const random = (min, max) => Math.random() * (max - min) + min
-const randomColor = () => `rgba(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)}, 0.5)`
+const createPad = (padButton, id) => {
+    regions.addRegion({
+        id: id,
+        start: startValue.value,
+        end: endValue.value,
+        content: 'Resize me',
+        color: '#000',
+        drag: true,
+        resize: true,
+      })
+}
 
-ws.on('decode', () => {
-  // Regions
-  regions.addRegion({
-    start: 0,
-    end: 8,
-    content: 'Resize me',
-    color: randomColor(),
-    drag: false,
-    resize: true,
-  })
-  regions.addRegion({
-    start: 9,
-    end: 10,
-    content: 'Cramped region',
-    color: randomColor(),
-    minLength: 1,
-    maxLength: 10,
-  })
-})
-
-console.log(regions.getRegions())
+const pads = document.querySelectorAll('[id^="create-"]')
+pads.forEach((i) => {
+    var createPadButton = document.getElementById(i.id)
+    createPadButton.addEventListener('click', () => {
+        createPad(createPadButton, i.id)
+    })
+});

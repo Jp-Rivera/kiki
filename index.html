@@ -8,13 +8,51 @@
 <body>
     <div id="waveform"></div>
     <input id="slider" data-action="zoom" type="range" min="20" max="1000" value="0" style="width: 100%">
-    <button id="play">Play</button>
-    <button id="pause">Pause</button>
-    <br />
-    <button id="start">sample start at playhead</buton>
-        <input id="start-value"></input>
-    <button id="end">sample end at playhead</buton>
-        <input id="end-value"></input>
+    <div id="controls-container">
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <br />
+        <button id="start">sample start at playhead
+            <input id="start-value"></input>
+        </buton>
+        <button id="end">sample end at playhead 
+            <input id="end-value"></input>
+        </buton>
+    </div>
+    <div id="pads-container">
+        <div>
+            <button id="pad-0" class="pad">0</button>
+            <button id="create-pad-0">create pad 0</button>
+        </div>
+        <div>
+            <button id="pad-1" class="pad">1</button>
+            <button id="create-pad-1">create pad 1</button>
+        </div>
+        <div>
+            <button id="pad-2" class="pad">2</button>
+            <button id="create-pad-2">create pad 2</button>
+        </div>
+        <div>
+            <button id="pad-3" class="pad">3</button>
+            <button id="create-pad-3">create pad 3</button>
+        </div>
+        <div>
+            <button id="pad-4" class="pad">4</button>
+            <button id="create-pad-4">create pad 4</button>
+        </div>
+        <div>
+            <button id="pad-5" class="pad">5</button>
+            <button id="create-pad-5">create pad 5</button>
+        </div>
+        <div>
+            <button id="pad-6" class="pad">6</button>
+            <button id="create-pad-6">create pad 6</button>
+        </div>
+        <div>
+            <button id="pad-7" class="pad">7</button>
+            <button id="create-pad-7">create pad 7</button>
+        </div>
+    </div>
 </body>
 <script type="module" src="./src/main.js"></script> 
 </html>
