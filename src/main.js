@@ -49,9 +49,9 @@ endButton.addEventListener('click', () => {
     endValue.value = ws.getCurrentTime()
 })
 
-const createPad = (padButton, id) => {
+const createPad = (padButtonId) => {
     regions.addRegion({
-        id: id,
+        id: padButtonId,
         start: startValue.value,
         end: endValue.value,
         content: 'Resize me',
@@ -59,12 +59,13 @@ const createPad = (padButton, id) => {
         drag: true,
         resize: true,
       })
+      console.log(regions.regions)
 }
 
-const pads = document.querySelectorAll('[id^="create-"]')
-pads.forEach((i) => {
+const createPadsButtons = document.querySelectorAll('[id^="create-"]')
+createPadsButtons.forEach((i) => {
     var createPadButton = document.getElementById(i.id)
     createPadButton.addEventListener('click', () => {
-        createPad(createPadButton, i.id)
+        createPad(this.id)
     })
 });
