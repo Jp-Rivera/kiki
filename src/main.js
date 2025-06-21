@@ -49,17 +49,20 @@ endButton.addEventListener("click", () => {
   endValue.value = ws.getCurrentTime();
 });
 
+const random = (min, max) => Math.random() * (max - min) + min
+const randomColor = () => `rgba(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)}, 0.5)`
+
 const createPad = (padButtonId) => {
   regions.addRegion({
-    id: padButtonId,
+    id: padButtonId.replace('create-', ''),
     start: startValue.value,
     end: endValue.value,
     content: "Resize me",
-    color: "#000",
+    color: randomColor(),
     drag: true,
     resize: true,
   });
-  console.log(regions.regions);
+  //console.log(regions.regions);
 };
 
 const createPadsButtons = document.querySelectorAll('[id^="create-"]');
@@ -68,4 +71,15 @@ createPadsButtons.forEach((i) => {
   createPadButton.addEventListener("click", () => {
     createPad(createPadButton.id);
   });
+});
+
+const padsButtons = document.querySelectorAll('[id^="pad-"]');
+padsButtons.forEach((i) => {
+  var padsButton = document.getElementById(i.id);
+  padsButton.addEventListener("click", () => {
+   var region = regions.regions.filter((obj) => {
+        return obj.id === padsButton.id
+    })
+        ws.play(region[0].start, region[0].end)
+    });
 });
