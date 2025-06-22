@@ -83,3 +83,15 @@ padsButtons.forEach((i) => {
         ws.play(region[0].start, region[0].end)
     });
 });
+
+const destroyButtons = document.querySelectorAll('[id^="destroy"]')
+destroyButtons.forEach((i) => {
+    var destroyButton = document.getElementById(i.id)
+    destroyButton.addEventListener("click", () => {
+        var region = regions.regions.filter((obj) => {
+            console.log(destroyButton.id.replace('destroy-pad-', ''))
+            return obj.id === 'pad-' + destroyButton.id.replace('destroy-pad-', '')
+        })
+        region[0].remove()
+    })
+})
